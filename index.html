@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SB3_UNIX | The Pure HTML Kernel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .mono {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="border-b border-white/10 p-6 sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-sm z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="mono font-bold text-xl tracking-tighter">SB3_UNIX</span>
+            </div>
+            <div class="hidden md:flex space-x-8 mono text-sm opacity-70">
+                <a href="#about" class="hover:text-green-500 transition-all">About</a>
+                <a href="#download" class="hover:text-green-500 transition-all">Download</a>
+                <a href="#forks" class="hover:text-green-500 transition-all">Forks</a>
+                <a href="https://github.com/rlabsllc/" class="hover:text-green-500 transition-all">Github</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 py-20 w-full">
+        <header class="mb-16">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                A Unix-Like Kernel in <span class="text-green-500 terminal-glow">HTML</span>.
+            </h1>
+            <p class="text-xl text-white/60 max-w-2xl leading-relaxed">
+                SB3_UNIX is an experimental kernel built entirely in HTML. It reimagines the foundations of operating system design through the lens of the modern web stack.
+            </p>
+        </header>
+
+        <!-- Status Section -->
+        <section id="about" class="grid md:grid-cols-2 gap-12 mb-20">
+            <div class="bg-white/5 border border-white/10 p-8 rounded-2xl">
+                <h3 class="mono text-green-500 mb-4 font-bold uppercase tracking-widest text-xs">Current Status</h3>
+                <h2 class="text-2xl font-bold mb-4 italic">"It works... slowly."</h2>
+                <p class="text-white/60 leading-relaxed">
+                    We are currently moving from Kernel 1 to Kernel 2. While Kernel 1 implemented basic Unix-like philosophies, Kernel 2 aims for a more flexible architecture with optimized performance.
+                </p>
+            </div>
+            <div class="flex flex-col justify-center space-y-4">
+                <div class="flex items-center space-x-4">
+                    <span class="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-xs mono">v2.0.0-beta1</span>
+                    <span class="text-white/40 text-sm">Latest preview release</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="bg-white/10 text-white/70 px-3 py-1 rounded-full text-xs mono">Developer</span>
+                    <a href="https://github.com/rlabsllc/" class="text-green-500 hover:underline text-sm font-medium">Ring Inc. (@rlabsllc)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8">Releases</h2>
+            <div class="space-y-6">
+                
+                <!-- Kernel 2 Beta -->
+                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex-grow">
+                        <div class="flex items-center space-x-2 mb-1">
+                            <h3 class="text-xl font-bold text-green-500">Kernel 2-Beta-1</h3>
+                            <span class="bg-green-500/20 text-green-400 text-[10px] px-2 py-0.5 rounded uppercase font-bold">New</span>
+                        </div>
+                        <p class="text-white/60 text-sm">New structure, faster performance, fewer bugs, and more flexible.</p>
+                        <p class="text-white/30 text-xs mt-2 italic">(Compiled download only for now)</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+                        <button disabled class="bg-green-500/30 text-black/50 cursor-not-allowed px-6 py-3 rounded-lg font-bold flex items-center justify-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Download Compiled</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kernel 1 -->
+                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold mb-1">Kernel 1 (Legacy)</h3>
+                        <p class="text-white/60 text-sm">Initial release. Includes core functionality.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+                        <a href="../release/Source/v1-0-0.sb3" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            <span>.SB3 Source</span>
+                        </a>
+                        <a href="../release/Compiled/v1-0-0.html" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Compiled</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Forks Section -->
+        <section id="forks" class="mb-20 pt-10 border-t border-white/10">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Community Forks</h2>
+                    <p class="text-white/60 text-sm">Custom kernels built on top of SB3_UNIX.</p>
+                </div>
+                <div class="hidden sm:block text-xs mono text-white/30 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+                    Forks on Github
+                </div>
+            </div>
+            
+            <div id="forks-container" class="space-y-6">
+                <!-- Javascript will populate forks here -->
+                <div class="animate-pulse flex space-x-4 p-8 border border-white/10 bg-white/5 rounded-2xl">
+                    <div class="flex-1 space-y-4 py-1">
+                        <div class="h-4 bg-white/10 rounded w-3/4"></div>
+                        <div class="space-y-2">
+                            <div class="h-4 bg-white/10 rounded"></div>
+                            <div class="h-4 bg-white/10 rounded w-5/6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View More Button -->
+            <div id="view-more-container" class="mt-8 text-center hidden">
+                <button id="view-more-btn" class="bg-white/5 border border-white/10 text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all inline-flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg id="view-more-spinner" class="animate-spin h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span id="view-more-text">View More Forks</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-white/40 text-sm mono">
+            <p>&copy; 2024 Ring Inc. <a href="https://robolabs.w3spaces.com" target="_blank"><u>(A RoboLabs Company)</u></a> All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="https://github.com/rlabsllc/" class="hover:text-white transition-all">GitHub</a>
+                <a href="https://github.com/rlabsllc/SB3-UNIX/" class="hover:text-white transition-all">Documentation</a>
+                <a href="https://github.com/rlabsllc/SB3-UNIX/" class="hover:text-white transition-all">Licensing</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GitHub Forks Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const forksContainer = document.getElementById('forks-container');
+            const viewMoreContainer = document.getElementById('view-more-container');
+            const viewMoreBtn = document.getElementById('view-more-btn');
+            const viewMoreSpinner = document.getElementById('view-more-spinner');
+            
+            const repoOwner = 'rlabsllc';
+            const repoName = 'SB3-UNIX';
+            const jsonFileName = 'sb3-fork.json';
+
+            let allForks = [];
+            let visibleCount = 0;
+
+            // Renders the HTML for a single fork card
+            function createCardHTML(title, description, btnText, btnUrl, tagText = "Fork") {
+                return `
+                    <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <h3 class="text-xl font-bold text-white">${title}</h3>
+                                <span class="bg-blue-500/20 text-blue-400 text-[10px] px-2 py-0.5 rounded uppercase font-bold">${tagText}</span>
+                            </div>
+                            <p class="text-white/60 text-sm">${description}</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+                            <a href="${btnUrl}" target="_blank" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                                <span>${btnText}</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Function to load and render a specific number of forks
+            async function loadForks(countToLoad) {
+                const endIndex = Math.min(visibleCount + countToLoad, allForks.length);
+                const forksToProcess = allForks.slice(visibleCount, endIndex);
+                let htmlOutput = "";
+
+                for (const fork of forksToProcess) {
+                    try {
+                        const rawUrl = `https://raw.githubusercontent.com/${fork.full_name}/${fork.default_branch}/${jsonFileName}`;
+                        const jsonRes = await fetch(rawUrl);
+                        
+                        if (jsonRes.ok) {
+                            const data = await jsonRes.json();
+                            const b = data.button;
+                            if (b && b.name && b.Description && b["download-button"]) {
+                                htmlOutput += createCardHTML(
+                                    b.name, 
+                                    b.Description, 
+                                    b["download-button"].Contents, 
+                                    b["download-button"].URL,
+                                    `By ${fork.owner.login} ⭐${fork.stargazers_count}`
+                                );
+                            } else {
+                                throw new Error("Invalid JSON structure");
+                            }
+                        } else {
+                            htmlOutput += createCardHTML(
+                                fork.name, 
+                                fork.description || "A community fork of SB3-UNIX.", 
+                                "View Repository", 
+                                fork.html_url,
+                                `By ${fork.owner.login} ⭐${fork.stargazers_count}`
+                            );
+                        }
+                    } catch (err) {
+                        htmlOutput += createCardHTML(
+                            fork.name, 
+                            fork.description || "A community fork of SB3-UNIX.", 
+                            "View Repository", 
+                            fork.html_url,
+                            `By ${fork.owner.login} ⭐${fork.stargazers_count}`
+                        );
+                    }
+                }
+
+                if (visibleCount === 0) {
+                    forksContainer.innerHTML = htmlOutput;
+                } else {
+                    forksContainer.insertAdjacentHTML('beforeend', htmlOutput);
+                }
+
+                visibleCount = endIndex;
+
+                // Toggle 'View More' button visibility
+                if (visibleCount >= allForks.length) {
+                    viewMoreContainer.classList.add('hidden');
+                } else {
+                    viewMoreContainer.classList.remove('hidden');
+                }
+            }
+
+            // View More Button Event Listener
+            viewMoreBtn.addEventListener('click', async () => {
+                viewMoreBtn.disabled = true;
+                viewMoreSpinner.classList.remove('hidden');
+                
+                await loadForks(10); // Load next 10 forks
+                
+                viewMoreSpinner.classList.add('hidden');
+                viewMoreBtn.disabled = false;
+            });
+
+            try {
+                // Fetch forks from GitHub API sorted by popularity (stargazers)
+                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/forks?sort=stargazers`);
+                
+                if (response.status === 404) {
+                    forksContainer.innerHTML = `<p class="text-white/60 text-sm text-center mt-4 border border-white/10 bg-white/5 p-4 rounded-xl">404 Repository not found.</p>`;
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch forks');
+                }
+                
+                allForks = await response.json();
+
+                if (allForks.length === 0) {
+                     forksContainer.innerHTML = `<p class="text-white/60 text-sm text-center mt-4 border border-white/10 bg-white/5 p-4 rounded-xl">No forks have been created for this repository yet.</p>`;
+                     return;
+                }
+
+                // Load initial 3 forks
+                await loadForks(3);
+
+            } catch (error) {
+                console.error("GitHub API Error:", error);
+                forksContainer.innerHTML = 
+                    `<p class="text-red-400/80 text-sm text-center mt-4 border border-red-500/20 bg-red-500/5 p-4 rounded-xl">
+                        Could not load live forks from GitHub at this time. (API Rate Limit or Network Error)
+                    </p>`;
+            }
+        });
+    </script>
+</body>
+</html>
