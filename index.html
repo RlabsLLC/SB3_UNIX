@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<!-- Version 1.3-4 -->
+<!-- Version 2.0 -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SB3_UNIX | The Pure HTML Kernel</title>
+    <title>UNiX3 | The Pure HTML Kernel</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP for smooth timeline animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@400;700&display=swap');
         
@@ -23,37 +25,93 @@
         .transition-all {
             transition: all 0.3s ease;
         }
+
+        /* Animated Logo Styles */
+        .svg-container {
+            width: 90vw;
+            max-width: 1000px;
+            filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.1));
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .draw-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- Fixed Background Logo Container -->
+    <div id="hero-logo-container" class="fixed inset-0 z-[-1] flex justify-center items-center pointer-events-none transition-all duration-75">
+        <div class="svg-container">
+            <svg viewBox="0 0 800 300" id="logo-svg" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <linearGradient id="premium-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FFD700" />
+                        <stop offset="50%" stop-color="#FF3366" />
+                        <stop offset="100%" stop-color="#8A2BE2" />
+                    </linearGradient>
+                    <filter id="blur-filter" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="20" id="ball-blur" />
+                    </filter>
+                </defs>
+
+                <path id="path-U" class="draw-path" d="M 150 100 L 150 160 A 40 40 0 0 0 230 160 L 230 100" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="path-N1" class="draw-path" d="M 280 100 L 280 200" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+                <path id="path-N2" class="draw-path" d="M 280 100 L 360 200" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+                <path id="path-N3" class="draw-path" d="M 360 200 L 360 100" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+                <path id="path-i-stem" class="draw-path" d="M 410 130 L 410 200" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+                <path id="path-X2" class="draw-path" d="M 450 100 L 550 200" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+                <path id="path-3" class="draw-path" d="M 590 100 C 650 100, 650 150, 615 150 C 660 150, 660 200, 590 200" fill="none" stroke="url(#premium-gradient)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <g id="flying-group">
+                    <line id="flying-line" x1="0" y1="-35" x2="0" y2="35" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round"/>
+                </g>
+                <circle id="ball" cx="400" cy="150" r="150" fill="#FFFFFF" filter="url(#blur-filter)" opacity="0" />
+            </svg>
+        </div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="border-b border-white/10 p-6 sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-sm z-50">
+    <nav class="border-b border-white/10 p-6 sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-md z-50">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="mono font-bold text-xl tracking-tighter">SB3_UNIX</span>
+            
+            <!-- Nav Brand -->
+            <div class="flex items-center space-x-2 h-8">
+                <span class="mono font-bold text-xl tracking-tighter flex items-center">
+                    UNiX<span class="bg-gradient-to-r from-[#FFD700] via-[#FF3366] to-[#8A2BE2] text-transparent bg-clip-text">3</span>
+                </span>
             </div>
+
             <div class="hidden md:flex space-x-8 mono text-sm opacity-70">
                 <a href="#about" class="hover:text-green-500 transition-all">About</a>
                 <a href="#download" class="hover:text-green-500 transition-all">Download</a>
                 <a href="#forks" class="hover:text-green-500 transition-all">Forks</a>
-                <a href="https://github.com/rlabsllc/" class="hover:text-green-500 transition-all">Github</a>
+                <a href="https://github.com/rlabsllc/" class="hover:text-green-500 transition-all">GitHub</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <main class="flex-grow max-w-5xl mx-auto px-6 py-20 w-full">
+    <!-- Invisible Spacer so the user has to scroll past the fullscreen animated logo -->
+    <div class="h-[65vh]"></div>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 py-20 w-full relative z-10 bg-[#0a0a0a]/80 backdrop-blur-sm rounded-3xl border border-white/5 shadow-2xl mb-20">
         <header class="mb-16">
             <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-                A Unix-Like Kernel in <span class="text-green-500 terminal-glow">HTML</span>.
+                A Unix-Like Kernel in <span class="text-green-500 text-shadow-glow">HTML</span>.
             </h1>
             <p class="text-xl text-white/60 max-w-2xl leading-relaxed">
-                SB3_UNIX is an experimental kernel built entirely in HTML. It reimagines the foundations of operating system design through the lens of the modern web stack.
+                UNiX3 is an experimental kernel built entirely in HTML. It reimagines the foundations of operating system design through the lens of the modern web stack.
             </p>
         </header>
 
-        <!-- Status Section -->
         <section id="about" class="grid md:grid-cols-2 gap-12 mb-20">
             <div class="bg-white/5 border border-white/10 p-8 rounded-2xl">
                 <h3 class="mono text-green-500 mb-4 font-bold uppercase tracking-widest text-xs">Current Status</h3>
@@ -74,13 +132,11 @@
             </div>
         </section>
 
-        <!-- Download Section -->
         <section id="download" class="mb-20">
             <h2 class="text-3xl font-bold mb-8">Releases</h2>
             <div class="space-y-6">
                 
-                <!-- Kernel 2 Beta -->
-                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-green-500 hover:-translate-y-1">
                     <div class="flex-grow">
                         <div class="flex items-center space-x-2 mb-1">
                             <h3 class="text-xl font-bold text-green-500">Kernel 2-Beta-1</h3>
@@ -99,8 +155,7 @@
                     </div>
                 </div>
 
-                <!-- Kernel 2 Alpha -->
-                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-green-500 hover:-translate-y-1">
                     <div class="flex-grow">
                         <div class="flex items-center space-x-2 mb-1">
                             <h3 class="text-xl font-bold text-white">Kernel 2-Alpha-1</h3>
@@ -109,7 +164,7 @@
                         <p class="text-white/60 text-sm">First Alpha release of Kernel 2.</p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 shrink-0">
-                        <a href="https://github.com/RlabsLLC/SB3_UNIX/blob/main/beta/Compiled/v0-0-1.html" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
+                        <a href="https://github.com/RlabsLLC/SB3_UNIX/tree/main/release/Compiled/v0-0-1.html" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
@@ -118,23 +173,22 @@
                     </div>
                 </div>
 
-                <!-- Kernel 1 Beta / RC -->
-                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-green-500 hover:-translate-y-1">
                     <div class="flex-grow">
                         <div class="flex items-center space-x-2 mb-1">
-                            <h3 class="text-xl font-bold text-white">Kernel 1 v1.1.0-rc1</h3>
+                            <h3 class="text-xl font-bold text-white">Kernel 1 v1.1.0-rc2</h3>
                             <span class="bg-blue-500/20 text-blue-400 text-[10px] px-2 py-0.5 rounded uppercase font-bold">RC / Beta</span>
                         </div>
-                        <p class="text-white/60 text-sm">Improved <code>print</code> functionality.</p>
+                        <p class="text-white/60 text-sm">Bug fixes and rendering fixes.</p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 shrink-0">
-                        <a href="https://github.com/RlabsLLC/SB3_UNIX/tree/main/beta/Source/v1-1-0-rc1.sb3" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
+                        <a href="https://github.com/RlabsLLC/SB3_UNIX/tree/main/beta/Source/v1-1-0-rc2.sb3" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                             <span>.SB3 Source</span>
                         </a>
-                        <a href="https://github.com/RlabsLLC/SB3_UNIX/tree/main/beta/Compiled/v1-1-0-rc1.html" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
+                        <a href="https://github.com/RlabsLLC/SB3_UNIX/tree/main/beta/Compiled/v1-1-0-rc2.html" class="bg-white/10 text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
@@ -143,8 +197,31 @@
                     </div>
                 </div>
 
-                <!-- Kernel 1 -->
-                <div class="download-card border border-white/10 bg-white/5 p-5 md:p-6 rounded-xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-75 hover:opacity-100">
+                <div class="download-card border border-white/10 bg-white/5 p-5 md:p-6 rounded-xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-75 hover:opacity-100 hover:border-green-500 hover:-translate-y-1">
+                    <div class="flex-grow">
+                        <div class="flex items-center space-x-2 mb-1">
+                            <h3 class="text-lg font-bold text-white/90">Kernel 1 v1.1.0-rc1</h3>
+                            <span class="bg-white/10 text-white/50 text-[10px] px-2 py-0.5 rounded uppercase font-bold">RC Legacy</span>
+                        </div>
+                        <p class="text-white/50 text-xs">Improved <code>print</code> functionality.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-2 shrink-0">
+                        <a href="https://github.com/RlabsLLC/SB3_UNIX/tree/main/beta/Source/v1-1-0-rc1.sb3" class="bg-white/5 border border-white/10 text-white/80 px-4 py-2 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            <span>.SB3 Source</span>
+                        </a>
+                        <a href="https://github.com/RlabsLLC/SB3_UNIX/tree/main/beta/Compiled/v1-1-0-rc1.html" class="bg-white/5 border border-white/10 text-white/80 px-4 py-2 rounded-lg font-bold hover:bg-white hover:text-black transition-all flex items-center justify-center space-x-2 text-center text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Compiled</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="download-card border border-white/10 bg-white/5 p-5 md:p-6 rounded-xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-75 hover:opacity-100 hover:border-green-500 hover:-translate-y-1">
                     <div class="flex-grow">
                         <div class="flex items-center space-x-2 mb-1">
                             <h3 class="text-lg font-bold text-white/90">Kernel 1</h3>
@@ -171,20 +248,18 @@
             </div>
         </section>
 
-        <!-- Forks Section -->
         <section id="forks" class="mb-20 pt-10 border-t border-white/10">
             <div class="flex items-center justify-between mb-8">
                 <div>
                     <h2 class="text-3xl font-bold mb-2">Community Forks</h2>
-                    <p class="text-white/60 text-sm">Custom kernels built on top of SB3_UNIX.</p>
+                    <p class="text-white/60 text-sm">Custom kernels built on top of UNiX3.</p>
                 </div>
                 <div class="hidden sm:block text-xs mono text-white/30 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                    Forks on Github
+                    Forks on GitHub
                 </div>
             </div>
             
             <div id="forks-container" class="space-y-6">
-                <!-- Javascript will populate forks here -->
                 <div class="animate-pulse flex space-x-4 p-8 border border-white/10 bg-white/5 rounded-2xl">
                     <div class="flex-1 space-y-4 py-1">
                         <div class="h-4 bg-white/10 rounded w-3/4"></div>
@@ -196,7 +271,6 @@
                 </div>
             </div>
 
-            <!-- View More Button -->
             <div id="view-more-container" class="mt-8 text-center hidden">
                 <button id="view-more-btn" class="bg-white/5 border border-white/10 text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-black transition-all inline-flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
                     <svg id="view-more-spinner" class="animate-spin h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -210,10 +284,9 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/10 py-12 px-6">
+    <footer class="border-t border-white/10 py-12 px-6 bg-[#0a0a0a] relative z-20">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-white/40 text-sm mono">
-            <p>&copy; 2024 Ring Inc. <a href="https://robolabs.w3spaces.com" target="_blank"><u>(A RoboLabs Company)</u></a> All rights reserved.</p>
+            <p>&copy; 2026 Ring Inc. <a href="https://robolabs.w3spaces.com" target="_blank"><u>(A RoboLabs Company)</u></a> All rights reserved.</p>
             <div class="flex space-x-6">
                 <a href="https://github.com/rlabsllc/" class="hover:text-white transition-all">GitHub</a>
                 <a href="https://github.com/rlabsllc/SB3-UNIX/" class="hover:text-white transition-all">Documentation</a>
@@ -222,8 +295,85 @@
         </div>
     </footer>
 
-    <!-- GitHub Forks Script -->
+    <!-- Scripts -->
     <script>
+        // --- 1. GSAP Logo Animation Script ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const paths = ["path-U", "path-N1", "path-N2", "path-N3", "path-i-stem", "path-X2", "path-3"];
+            paths.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) {
+                    const length = el.getTotalLength();
+                    el.style.strokeDasharray = length;
+                    el.style.strokeDashoffset = length;
+                }
+            });
+
+            gsap.set("#flying-group", { x: 410, y: 165, opacity: 0 });
+
+            const tl = gsap.timeline({ delay: 0.5 });
+
+            tl.to("#ball", { duration: 0.5, opacity: 1, ease: "power2.out" }, "kf1")
+              .to("#ball", { duration: 1.2, cx: 150, cy: 100, r: 7.5, ease: "power2.inOut" }, "kf1")
+              .to("#ball-blur", { duration: 1.2, attr: { stdDeviation: 0 }, ease: "power2.inOut" }, "kf1");
+
+            tl.to("#ball", { duration: 0.25, cy: 160, ease: "none" }, "drawU")
+              .to("#ball", { duration: 0.25, cx: 190, ease: "sine.in" }, "drawU+=0.25")
+              .to("#ball", { duration: 0.25, cy: 200, ease: "sine.out" }, "drawU+=0.25")
+              .to("#ball", { duration: 0.25, cx: 230, ease: "sine.out" }, "drawU+=0.5")
+              .to("#ball", { duration: 0.25, cy: 160, ease: "sine.in" }, "drawU+=0.5")
+              .to("#ball", { duration: 0.25, cy: 100, ease: "none" }, "drawU+=0.75");
+
+            tl.to("#path-U", { duration: 1.0, strokeDashoffset: 0, ease: "none" }, "drawU");
+
+            tl.to("#ball", { duration: 0.6, cx: 280, ease: "none" }, "bounce1")
+              .to("#ball", { duration: 0.3, cy: 40, ease: "sine.out" }, "bounce1")
+              .to("#ball", { duration: 0.3, cy: 100, ease: "sine.in" }, "bounce1+=0.3");
+
+            tl.to("#path-N1", { duration: 0.4, strokeDashoffset: 0, ease: "power2.out" }, "landN")
+              .to("#path-N2", { duration: 0.4, strokeDashoffset: 0, ease: "power2.out" }, "landN")
+              .to("#path-N3", { duration: 0.4, strokeDashoffset: 0, ease: "power2.out" }, "landN+=0.2");
+
+            tl.to("#ball", { duration: 0.7, cx: 410, ease: "none" }, "landN")
+              .to("#ball", { duration: 0.35, cy: 10, ease: "sine.out" }, "landN")
+              .to("#ball", { duration: 0.35, cy: 130, ease: "sine.in" }, "landN+=0.35");
+
+            tl.to("#path-i-stem", { duration: 0.4, strokeDashoffset: 0, ease: "power2.out" }, "landI");
+            
+            tl.to("#ball", { duration: 0.4, cy: 80, ease: "power2.out" }, "landI+=0.4")
+              .to("#ball", { duration: 0.4, fill: "#10B981", r: 12, ease: "power2.out" }, "landI+=0.4")
+              .to("#ball", { duration: 0.15, cy: 100, ease: "power2.in" }, ">"); 
+
+            tl.set("#flying-group", { opacity: 1 }, "split");
+
+            tl.to("#flying-line", { duration: 1.2, attr: { y1: -70.71, y2: 70.71 }, ease: "power2.inOut" }, "split+=0.1");
+            
+            tl.to("#flying-group", {
+                duration: 1.2,
+                x: 500, 
+                y: 150, 
+                rotation: 405,
+                ease: "power2.inOut"
+            }, "split+=0.1");
+
+            tl.to("#path-X2", { duration: 0.5, strokeDashoffset: 0, ease: "power2.out" }, "formX")
+              .to("#path-3", { duration: 1.5, strokeDashoffset: 0, ease: "power2.out" }, "formX+=0.3");
+        });
+
+        // --- 2. Scroll Animation Script (Blur & Nav) ---
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            // Background blur logic (max 20px)
+            const heroLogo = document.getElementById('hero-logo-container');
+            const blurValue = Math.min(scrollY / 15, 20);
+            const opacityValue = Math.max(1 - (scrollY / 800), 0.15); // fade out a bit so it's not distracting
+            
+            heroLogo.style.filter = `blur(${blurValue}px)`;
+            heroLogo.style.opacity = opacityValue;
+        });
+
+        // --- 3. GitHub Forks API Script ---
         document.addEventListener('DOMContentLoaded', async () => {
             const forksContainer = document.getElementById('forks-container');
             const viewMoreContainer = document.getElementById('view-more-container');
@@ -237,10 +387,9 @@
             let allForks = [];
             let visibleCount = 0;
 
-            // Renders the HTML for a single fork card
             function createCardHTML(title, description, btnText, btnUrl, tagText = "Fork") {
                 return `
-                    <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="download-card border border-white/10 bg-white/5 p-8 rounded-2xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-green-500 hover:-translate-y-1">
                         <div class="flex-grow">
                             <div class="flex items-center space-x-2 mb-1">
                                 <h3 class="text-xl font-bold text-white">${title}</h3>
@@ -260,7 +409,6 @@
                 `;
             }
 
-            // Function to load and render a specific number of forks
             async function loadForks(countToLoad) {
                 const endIndex = Math.min(visibleCount + countToLoad, allForks.length);
                 const forksToProcess = allForks.slice(visibleCount, endIndex);
@@ -288,7 +436,7 @@
                         } else {
                             htmlOutput += createCardHTML(
                                 fork.name, 
-                                fork.description || "A community fork of SB3-UNIX.", 
+                                fork.description || "A community fork of UNiX3.", 
                                 "View Repository", 
                                 fork.html_url,
                                 `By ${fork.owner.login} ⭐${fork.stargazers_count}`
@@ -297,7 +445,7 @@
                     } catch (err) {
                         htmlOutput += createCardHTML(
                             fork.name, 
-                            fork.description || "A community fork of SB3-UNIX.", 
+                            fork.description || "A community fork of UNiX3.", 
                             "View Repository", 
                             fork.html_url,
                             `By ${fork.owner.login} ⭐${fork.stargazers_count}`
@@ -313,7 +461,6 @@
 
                 visibleCount = endIndex;
 
-                // Toggle 'View More' button visibility
                 if (visibleCount >= allForks.length) {
                     viewMoreContainer.classList.add('hidden');
                 } else {
@@ -321,19 +468,17 @@
                 }
             }
 
-            // View More Button Event Listener
             viewMoreBtn.addEventListener('click', async () => {
                 viewMoreBtn.disabled = true;
                 viewMoreSpinner.classList.remove('hidden');
                 
-                await loadForks(10); // Load next 10 forks
+                await loadForks(10);
                 
                 viewMoreSpinner.classList.add('hidden');
                 viewMoreBtn.disabled = false;
             });
 
             try {
-                // Fetch forks from GitHub API sorted by popularity (stargazers)
                 const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/forks?sort=stargazers`);
                 
                 if (response.status === 404) {
@@ -352,7 +497,6 @@
                      return;
                 }
 
-                // Load initial 3 forks
                 await loadForks(3);
 
             } catch (error) {
