@@ -1,4 +1,4 @@
-# UNiX3 Kernels
+# UN𝗶X3 Kernels
 
 Current version: Kernel 1
 ---
